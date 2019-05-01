@@ -1,4 +1,8 @@
+import './Card.css';
+
 export default {
+  name: 'Card',
+
   functional: true,
 
   props: {
@@ -9,7 +13,7 @@ export default {
     const { summary } = context.props;
 
     return (
-      <div className="card">{summary}</div>
+      <div class="card">{summary}</div>
     );
   },
 };

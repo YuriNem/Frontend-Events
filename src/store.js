@@ -18,11 +18,7 @@ export default new Vuex.Store({
 
   actions: {
     GET_EVENTS: async (context) => {
-      const { data } = await Promise.resolve({ data: [
-        { summary: 'HolyJS' },
-        { summary: 'moscowcss' },
-        { summary: 'WSD' },
-      ] });
+      const { data } = await axios.get('/events');
       
       context.commit('SET_EVENTS', data);
     },

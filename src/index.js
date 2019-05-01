@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import store from './store';
-import App from './App.jsx';
+import './style.css';
+import App from './components/App/App.jsx';
 
 new Vue({
   store,
   render: h => h(App),
-}).$mount('#app');
+}).$mount('#render');
