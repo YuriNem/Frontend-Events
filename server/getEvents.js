@@ -6,7 +6,7 @@ const options = {
 };
 
 const parse = text => text.split('\r\n').reduce((acc, string) => {
-    const [key, value] = string.split(':');
+    const [key, value] = string.replace(':', '|').split('|');
 
     if (key === 'SUMMARY') {
         return [...acc, { [key.toLowerCase()]: value }];

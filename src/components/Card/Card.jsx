@@ -7,13 +7,20 @@ export default {
 
   props: {
     summary: String,
+    location: String,
+    description: String,
   },
 
   render(h, context) {
-    const { summary } = context.props;
+    const { summary, location, description } = context.props;
 
     return (
-      <div class="card">{summary}</div>
+      <div class="card">
+        <div class="card__summary">
+          <a href={description}>{summary}</a>
+        </div>
+        <div class="card__location">{location}</div>
+      </div>
     );
   },
 };
