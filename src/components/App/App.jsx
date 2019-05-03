@@ -1,33 +1,37 @@
-import Bar from '../Bar/Bar.jsx';
-import Card from '../Card/Card.jsx';
 import './App.css';
+import Bar from '../Bar/Bar.jsx';
+import Cards from '../Cards/Cards.jsx';
 
 export default {
   name: 'App',
+
+  data() {
+    return {
+      search: '',
+    }
+  },
+
+  methods: {
+    oninput(event) {
+      this[event.target.name] = event.target.value;
+    },
+  },
+
+  created() {
+    this.oninput = this.oninput.bind(this);
+  },
 
   mounted() {
     this.$store.dispatch('GET_EVENTS');
   },
 
   render(h) {
-    const { events, search } = this.$store.state;
+    const { search, oninput } = this;
 
     return (
       <div class="app">
-        <Bar />
-        {
-          events
-          .filter(event =>
-            event.summary.toLowerCase().indexOf(search.toLowerCase()) !== -1)
-          .map(event =>
-            <Card
-              summary={event.summary}
-              location={event.location}
-              description={event.description}
-              key={Math.random()}
-            />
-          )
-        }
+        <Bar search={search} oninput={oninput} />
+        <Cards search={search} />
       </div>
     );
   },

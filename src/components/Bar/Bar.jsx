@@ -3,23 +3,24 @@ import './Bar.css';
 export default {
     name: 'Bar',
 
-    methods: {
-        onInput(event) {
-            this.$store.dispatch('GET_SEARCH', event.target.value);
-        },
+    functional: true,
+
+    props: {
+        search: String,
+        oninput: Function,
     },
 
-    render(h) {
-        const { search } = this.$store.state;
+    render(h, context) {
+        const { search, oninput } = context.props;
 
         return (
             <div class="bar">
-                <input
+                Search: <input
                     class="bar__search"
                     type="search"
                     name="search"
                     value={search}
-                    onInput={event => this.onInput(event)}
+                    onInput={oninput}
                 />
             </div>
         );

@@ -17,7 +17,7 @@ export default {
     return (
       <div class="card">
         <div class="card__summary">
-          <a href={description}>{summary}</a>
+          <a class="card__description" href={description}>{summary}</a>
         </div>
         <div class="card__location">{location}</div>
       </div>
