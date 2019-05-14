@@ -5,21 +5,39 @@ export default {
 
     props: {
         search: String,
-        oninput: Function,
+        selectedCity: String,
+        onchange: Function,
     },
 
     render(h) {
-        const { search, oninput } = this;
+        const { events } = this.$store.state;
+        const { search, selectedCity, onchange } = this;
 
         return (
             <div class="bar">
-                Search: <input
+                Поиск: <input
                     class="bar__search"
                     type="search"
                     name="search"
                     value={search}
-                    onInput={oninput}
+                    onInput={onchange}
                 />
+                Выбрать город: <select
+                    class="bar__select"
+                    name="selectedCity"
+                    value={selectedCity}
+                    onChange={onchange}
+                >
+                    <option value="Любой">Любой</option>
+                    {
+                        [...new Set(events.map(({ location }) => location))]
+                            .sort()
+                            .map(
+                                location => 
+                                    <option value={location}>{location}</option>
+                            )
+                    }
+                </select>
             </div>
         );
     },

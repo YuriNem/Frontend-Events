@@ -6,6 +6,7 @@ export default {
 
     props: {
       search: String,
+      selectedCity: String,
     },
 
     methods: {
@@ -18,18 +19,23 @@ export default {
 
     created() {
       this.oninput = this.oninput.bind(this);
+      this.likeoff = require('../../../svg/likeOff.svg');
+      this.likeon = require('../../../svg/likeOn.svg');
     },
 
     render(h) {
       const { events } = this.$store.state;
-      const { search, oninput } = this;
+      const { search, selectedCity, oninput, likeoff, likeon } = this;
 
       return (
         <div class="cards" onInput={oninput}>
           {
             events
-            .filter(event =>
-              event.summary.toLowerCase().indexOf(search.toLowerCase()) !== -1)
+            .filter(
+              event => 
+                event.summary.toLowerCase().indexOf(search.toLowerCase()) !== -1 &&
+                (selectedCity === 'Любой' || event.location === selectedCity)
+            )
             .map(event =>
               <Card
                 summary={event.summary}
@@ -38,6 +44,8 @@ export default {
                 dtstart={event.dtstart}
                 dtend={event.dtend}
                 like={event.like}
+                likeoff={likeoff}
+                likeon={likeon}
                 key={Math.random()}
               />
             )

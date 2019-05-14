@@ -10,6 +10,8 @@ export default {
     dtstart: String,
     dtend: String,
     like: Boolean,
+    likeoff: Object,
+    likeon: Object,
   },
 
   methods: {
@@ -23,7 +25,7 @@ export default {
         'фев.',
         'мар.',
         'апр.',
-        'май.',
+        'май',
         'июн.',
         'июл.',
         'авг.',
@@ -47,35 +49,40 @@ export default {
       dtstart,
       dtend,
       like,
+      likeoff,
+      likeon,
       checkDates,
       stringifyDate,
     } = this;
 
     return (
-      <div class="card">
-        <input
-          class="card__checkbox"
-          type="checkbox"
-          name={`c${summary}|${dtstart}`}
-          checked={like}
-        />
-        <div class="card__summary">
-          <a class="card__description" href={description}>{summary}</a>
-        </div>
-        <div class="card__location">{location}</div>
+      <a class="card" href={description} target="_blank">
+        <div class="card__description">
+          <div class="card__summary">{summary}</div>
+          <div class="card__location">{location}</div>
           {
             dtstart ?
-            <div class="card__date">
-              {
-                checkDates(dtstart, dtend)
-                  .map(date => stringifyDate(new Date(date)))
-                  .join(' - ')
-              }
-            </div>
+              <div class="card__date">
+                {
+                  checkDates(dtstart, dtend)
+                    .map(date => stringifyDate(new Date(date)))
+                    .join(' - ')
+                }
+              </div>
             :
-            null
+              null
           }
-      </div>
+        </div>
+        <div class="card__like">
+          <input
+            class="card__checkbox"
+            type="checkbox"
+            name={`c${summary}|${dtstart}`}
+            checked={like}
+          />
+          <img class="card__img" src={like ? likeon : likeoff} alt="like" />
+        </div>
+    </a>
     );
   },
 };

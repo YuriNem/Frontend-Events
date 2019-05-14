@@ -1,3 +1,7 @@
 .bar {
     height: 64px;
 }
+
+.bar__search {
+    margin-right: 16px;
+}

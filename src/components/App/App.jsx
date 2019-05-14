@@ -8,17 +8,18 @@ export default {
   data() {
     return {
       search: '',
-    }
+      selectedCity: 'Любой',
+    };
   },
 
   methods: {
-    oninput(event) {
+    onchange(event) {
       this[event.target.name] = event.target.value;
     },
   },
 
   created() {
-    this.oninput = this.oninput.bind(this);
+    this.onchange = this.onchange.bind(this);
   },
 
   mounted() {
@@ -26,12 +27,16 @@ export default {
   },
 
   render(h) {
-    const { search, oninput } = this;
+    const { search, selectedCity, onchange } = this;
 
     return (
       <div class="app">
-        <Bar search={search} oninput={oninput} />
-        <Cards search={search} />
+        <Bar
+          search={search}
+          selectedCity={selectedCity}
+          onchange={onchange}
+        />
+        <Cards search={search} selectedCity={selectedCity} />
       </div>
     );
   },

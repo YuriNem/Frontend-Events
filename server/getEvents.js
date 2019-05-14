@@ -23,7 +23,7 @@ const parseText = text => text.split('\r\n').reduce((acc, string) => {
             ...last,
             [key.toLowerCase()]: value.split('\\')[0],
         } ];
-    } else if (key === 'DTSTART;VALUE=DATE') {
+    } else if (key === 'DTSTART;VALUE=DATE' || key === 'DTSTART') {
         const preAcc = acc.slice(0, acc.length - 1);
         const last = acc[acc.length - 1];
 
@@ -31,7 +31,7 @@ const parseText = text => text.split('\r\n').reduce((acc, string) => {
             ...last,
             [key.split(';')[0].toLowerCase()]: parseDate(value),
         } ];
-    } else if (key === 'DTEND;VALUE=DATE') {
+    } else if (key === 'DTEND;VALUE=DATE' || key === 'DTEND') {
         const preAcc = acc.slice(0, acc.length - 1);
         const last = acc[acc.length - 1];
 
