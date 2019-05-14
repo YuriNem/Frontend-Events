@@ -1,2 +1,2 @@
 # Frontend-Events
-### Frontend events
+### Web Standards calendar app.
