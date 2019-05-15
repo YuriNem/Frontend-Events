@@ -7,6 +7,8 @@ export default {
     props: {
       search: String,
       selectedCity: String,
+      upcoming: Boolean,
+      date: Date,
     },
 
     methods: {
@@ -25,7 +27,7 @@ export default {
 
     render(h) {
       const { events } = this.$store.state;
-      const { search, selectedCity, oninput, likeoff, likeon } = this;
+      const { search, selectedCity, upcoming, oninput, likeoff, likeon, date } = this;
 
       return (
         <div class="cards" onInput={oninput}>
@@ -34,7 +36,8 @@ export default {
             .filter(
               event => 
                 event.summary.toLowerCase().indexOf(search.toLowerCase()) !== -1 &&
-                (selectedCity === 'Любой' || event.location === selectedCity)
+                (selectedCity === 'Любой' || event.location === selectedCity) &&
+                (upcoming ? new Date(event.dtstart) > date :  new Date(event.dtstart) < date)
             )
             .map(event =>
               <Card

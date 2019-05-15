@@ -6,12 +6,15 @@ export default {
     props: {
         search: String,
         selectedCity: String,
+        upcoming: Boolean,
         onchange: Function,
+        onclick: Function,
+        date: Date,
     },
 
     render(h) {
         const { events } = this.$store.state;
-        const { search, selectedCity, onchange } = this;
+        const { search, selectedCity, upcoming, onchange, onclick, date } = this;
 
         return (
             <div class="bar">
@@ -30,7 +33,11 @@ export default {
                 >
                     <option value="Любой">Любой</option>
                     {
-                        [...new Set(events.map(({ location }) => location))]
+                        [...new Set(
+                            events
+                            .filter(({ dtstart }) => upcoming ? new Date(dtstart) > date : new Date(dtstart) < date)
+                            .map(({ location }) => location)
+                        )]
                             .sort()
                             .map(
                                 location => 
@@ -38,6 +45,9 @@ export default {
                             )
                     }
                 </select>
+                <button class="bar__button" onClick={onclick}>
+                    {upcoming ? 'Прошедшие' : 'Предстоящие'}
+                </button>
             </div>
         );
     },
