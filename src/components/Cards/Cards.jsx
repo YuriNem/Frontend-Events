@@ -8,6 +8,7 @@ export default {
       search: String,
       selectedCity: String,
       upcoming: Boolean,
+      liked: Boolean,
       date: Date,
     },
 
@@ -27,7 +28,16 @@ export default {
 
     render(h) {
       const { events } = this.$store.state;
-      const { search, selectedCity, upcoming, oninput, likeoff, likeon, date } = this;
+      const {
+        search,
+        selectedCity,
+        upcoming,
+        liked,
+        oninput,
+        likeoff,
+        likeon,
+        date,
+      } = this;
 
       return (
         <div class="cards" onInput={oninput}>
@@ -37,7 +47,8 @@ export default {
               event => 
                 event.summary.toLowerCase().indexOf(search.toLowerCase()) !== -1 &&
                 (selectedCity === 'Любой' || event.location === selectedCity) &&
-                (upcoming ? new Date(event.dtstart) > date :  new Date(event.dtstart) < date)
+                (upcoming ? new Date(event.dtstart) > date :  new Date(event.dtstart) < date) &&
+                (!liked || event.like)
             )
             .map(event =>
               <Card

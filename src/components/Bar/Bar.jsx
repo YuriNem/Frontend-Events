@@ -7,6 +7,7 @@ export default {
         search: String,
         selectedCity: String,
         upcoming: Boolean,
+        liked: Boolean,
         onchange: Function,
         onclick: Function,
         date: Date,
@@ -14,7 +15,15 @@ export default {
 
     render(h) {
         const { events } = this.$store.state;
-        const { search, selectedCity, upcoming, onchange, onclick, date } = this;
+        const {
+            search,
+            selectedCity,
+            upcoming,
+            liked,
+            onchange,
+            onclick,
+            date,
+        } = this;
 
         return (
             <div class="bar">
@@ -35,7 +44,9 @@ export default {
                     {
                         [...new Set(
                             events
-                            .filter(({ dtstart }) => upcoming ? new Date(dtstart) > date : new Date(dtstart) < date)
+                            .filter(({ dtstart, like }) => 
+                                (upcoming ? new Date(dtstart) > date : new Date(dtstart) < date) &&
+                                (!liked || like))
                             .map(({ location }) => location)
                         )]
                             .sort()
@@ -45,9 +56,16 @@ export default {
                             )
                     }
                 </select>
-                <button class="bar__button" onClick={onclick}>
+                <button class="bar__button" name="upcoming" onClick={onclick}>
                     {upcoming ? 'Прошедшие' : 'Предстоящие'}
                 </button>
+                <input
+                    class="bar__checkbox"
+                    type="checkbox"
+                    name="liked"
+                    checked={liked}
+                    onClick={onclick}
+                />
             </div>
         );
     },

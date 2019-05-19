@@ -10,6 +10,7 @@ export default {
       search: '',
       selectedCity: 'Любой',
       upcoming: true,
+      liked: false,
     };
   },
 
@@ -18,8 +19,8 @@ export default {
       this[event.target.name] = event.target.value;
     },
 
-    onclick() {
-      this.upcoming = !this.upcoming;
+    onclick(event) {
+      this[event.target.name] = !this[event.target.name];
     },
   },
 
@@ -34,7 +35,15 @@ export default {
   },
 
   render(h) {
-    const { search, selectedCity, upcoming, onchange, onclick, date } = this;
+    const {
+      search,
+      selectedCity,
+      upcoming,
+      liked,
+      onchange,
+      onclick,
+      date,
+    } = this;
 
     return (
       <div class="app">
@@ -42,11 +51,18 @@ export default {
           search={search}
           selectedCity={selectedCity}
           upcoming={upcoming}
+          liked={liked}
           onchange={onchange}
           onclick={onclick}
           date={date}
         />
-        <Cards search={search} selectedCity={selectedCity} upcoming={upcoming} date={date}/>
+        <Cards
+          search={search}
+          selectedCity={selectedCity}
+          upcoming={upcoming}
+          liked={liked}
+          date={date}
+        />
       </div>
     );
   },
