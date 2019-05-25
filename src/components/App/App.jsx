@@ -11,6 +11,7 @@ export default {
       selectedCity: 'Любой',
       upcoming: true,
       liked: false,
+      date: new Date(),
     };
   },
 
@@ -27,7 +28,8 @@ export default {
   created() {
     this.onchange = this.onchange.bind(this);
     this.onclick = this.onclick.bind(this);
-    this.date = new Date();
+    this.likeoff = require('../../../svg/likeOff.svg');
+    this.likeon = require('../../../svg/likeOn.svg');
   },
 
   mounted() {
@@ -40,10 +42,19 @@ export default {
       selectedCity,
       upcoming,
       liked,
+      date,
       onchange,
       onclick,
-      date,
+      likeoff,
+      likeon,
     } = this;
+
+    const filteredevents = this.$store.state.events.filter(
+      event => 
+        event.summary.toLowerCase().includes(search.toLowerCase()) &&
+        (upcoming ? new Date(event.dtstart) > date :  new Date(event.dtstart) < date) &&
+        (!liked || event.like)
+    );
 
     return (
       <div class="app">
@@ -54,14 +65,13 @@ export default {
           liked={liked}
           onchange={onchange}
           onclick={onclick}
-          date={date}
+          filteredevents={filteredevents}
         />
         <Cards
-          search={search}
           selectedCity={selectedCity}
-          upcoming={upcoming}
-          liked={liked}
-          date={date}
+          filteredevents={filteredevents}
+          likeoff={likeoff}
+          likeon={likeon}
         />
       </div>
     );

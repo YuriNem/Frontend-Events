@@ -10,11 +10,10 @@ export default {
         liked: Boolean,
         onchange: Function,
         onclick: Function,
-        date: Date,
+        filteredevents: Array,
     },
 
     render(h) {
-        const { events } = this.$store.state;
         const {
             search,
             selectedCity,
@@ -22,7 +21,7 @@ export default {
             liked,
             onchange,
             onclick,
-            date,
+            filteredevents,
         } = this;
 
         return (
@@ -42,16 +41,10 @@ export default {
                 >
                     <option value="Любой">Любой</option>
                     {
-                        [...new Set(
-                            events
-                            .filter(({ dtstart, like }) => 
-                                (upcoming ? new Date(dtstart) > date : new Date(dtstart) < date) &&
-                                (!liked || like))
-                            .map(({ location }) => location)
-                        )]
+                        [...new Set(filteredevents.map(({ location }) => location))]
                             .sort()
                             .map(
-                                location => 
+                                location =>
                                     <option value={location}>{location}</option>
                             )
                     }

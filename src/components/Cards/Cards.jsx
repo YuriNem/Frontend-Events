@@ -5,11 +5,10 @@ export default {
     name: 'Cards',
 
     props: {
-      search: String,
       selectedCity: String,
-      upcoming: Boolean,
-      liked: Boolean,
-      date: Date,
+      filteredevents: Array,
+      likeoff: Object,
+      likeon: Object,
     },
 
     methods: {
@@ -22,46 +21,38 @@ export default {
 
     created() {
       this.oninput = this.oninput.bind(this);
-      this.likeoff = require('../../../svg/likeOff.svg');
-      this.likeon = require('../../../svg/likeOn.svg');
     },
 
     render(h) {
-      const { events } = this.$store.state;
       const {
-        search,
         selectedCity,
-        upcoming,
-        liked,
+        filteredevents,
         oninput,
         likeoff,
         likeon,
-        date,
       } = this;
 
       return (
         <div class="cards" onInput={oninput}>
           {
-            events
-            .filter(
-              event => 
-                event.summary.toLowerCase().indexOf(search.toLowerCase()) !== -1 &&
-                (selectedCity === 'Любой' || event.location === selectedCity) &&
-                (upcoming ? new Date(event.dtstart) > date :  new Date(event.dtstart) < date) &&
-                (!liked || event.like)
-            )
-            .map(event =>
-              <Card
-                summary={event.summary}
-                location={event.location}
-                description={event.description}
-                dtstart={event.dtstart}
-                dtend={event.dtend}
-                like={event.like}
-                likeoff={likeoff}
-                likeon={likeon}
-                key={Math.random()}
-              />
+            filteredevents
+              .filter(
+                event =>
+                  (selectedCity === 'Любой' || event.location === selectedCity)
+              )
+            .map(
+              event =>
+                <Card
+                  summary={event.summary}
+                  location={event.location}
+                  description={event.description}
+                  dtstart={event.dtstart}
+                  dtend={event.dtend}
+                  like={event.like}
+                  likeoff={likeoff}
+                  likeon={likeon}
+                  key={Math.random()}
+                />
             )
           }
         </div>

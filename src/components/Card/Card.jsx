@@ -16,7 +16,7 @@ export default {
 
   methods: {
     checkDates(dtstart, dtend) {
-      return dtstart === dtend ? [dtstart] : [dtstart, dtend];
+      return dtstart >= dtend ? [dtstart] : [dtstart, dtend];
     },
 
     stringifyDate(date) {
