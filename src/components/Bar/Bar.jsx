@@ -45,7 +45,17 @@ export default {
                 >
                     <option value="Любой">Любой</option>
                     {
-                        [...new Set(events.map(({ location }) => location))]
+                        [
+                            ...new Set(
+                                events
+                                    .filter(
+                                        ({ dtstart }) => upcoming ?
+                                            new Date(dtstart) >= new Date() :
+                                            new Date(dtstart) < new Date()
+                                    )
+                                    .map(({ location }) => location)
+                            )
+                        ]
                             .sort()
                             .map(
                                 location =>
