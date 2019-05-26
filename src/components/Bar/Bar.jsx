@@ -5,24 +5,28 @@ export default {
 
     props: {
         search: String,
-        selectedCity: String,
+        selectedcity: String,
         upcoming: Boolean,
         liked: Boolean,
         onchange: Function,
         onclick: Function,
-        filteredevents: Array,
+        likeoff: Object,
+        likeon: Object,
     },
 
     render(h) {
         const {
             search,
-            selectedCity,
+            selectedcity,
             upcoming,
             liked,
             onchange,
             onclick,
-            filteredevents,
+            likeoff,
+            likeon,
         } = this;
+
+        const { events } = this.$store.state;
 
         return (
             <div class="bar">
@@ -35,13 +39,13 @@ export default {
                 />
                 Выбрать город: <select
                     class="bar__select"
-                    name="selectedCity"
-                    value={selectedCity}
+                    name="selectedcity"
+                    value={selectedcity}
                     onChange={onchange}
                 >
                     <option value="Любой">Любой</option>
                     {
-                        [...new Set(filteredevents.map(({ location }) => location))]
+                        [...new Set(events.map(({ location }) => location))]
                             .sort()
                             .map(
                                 location =>
@@ -50,7 +54,7 @@ export default {
                     }
                 </select>
                 <button class="bar__button" name="upcoming" onClick={onclick}>
-                    {upcoming ? 'Прошедшие' : 'Предстоящие'}
+                    {upcoming ? 'Предстоящие' : 'Прошедшие'}
                 </button>
                 <input
                     class="bar__checkbox"
@@ -59,6 +63,7 @@ export default {
                     checked={liked}
                     onClick={onclick}
                 />
+                <img class="bar__img" src={liked ? likeon : likeoff} alt="liked" />
             </div>
         );
     },

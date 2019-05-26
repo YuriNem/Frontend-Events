@@ -1,7 +1,7 @@
 {
   "name": "frontend-events",
   "version": "1.0.0",
-  "description": "frontend-events",
+  "description": "Web Standards calendar app",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",

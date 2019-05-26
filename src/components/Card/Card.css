@@ -7,8 +7,8 @@
     border-radius: 3px;
     text-decoration: none;
     display: grid;
-    grid-template-columns: 176px 32px;
-    grid-gap: 16px;
+    grid-template-columns: 182px 32px;
+    grid-gap: 10px;
     background-color: rgb(255, 255, 255);
 }
 
@@ -19,13 +19,15 @@
 .card__summary {
     color: rgb(225, 83, 69);
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    overflow-wrap: break-word;
 }
 
 .card__location {
     color: black;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    overflow-wrap: break-word;
 }
 
 .card__date {

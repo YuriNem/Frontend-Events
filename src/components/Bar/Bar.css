@@ -1,15 +1,65 @@
 .bar {
-    height: 64px;
+    padding: 12px 0px;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px #e6e6e6;
+    border-radius: 3px;
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+
+.bar:hover {
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,.12);
 }
 
 .bar__search {
-    margin-right: 16px;
+    color: rgb(225, 83, 69);
+    border: 0px;
+    border-bottom: solid 1px #e6e6e6;
+    font-size: 16px;
+    padding: 2px;
+    outline: none;
+    margin-left: 4px;
+    margin-right: 20px;
 }
 
 .bar__select {
-    margin-right: 16px;
+    color: rgb(225, 83, 69);
+    border: 0px;
+    border-bottom: solid 1px #e6e6e6;
+    font-size: 16px;
+    padding: 2px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    width: 200px;
+    margin-left: 4px;
+    cursor: pointer;
+    margin-right: 20px;
 }
 
 .bar__button {
-    margin-right: 16px;
+    color: rgb(225, 83, 69);
+    border: 0px;
+    font-size: 16px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    width: 105px;
+    margin-right: 20px;
+}
+
+.bar__checkbox {
+    opacity: 0;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    margin: 0px;
+    cursor: pointer;
+    top: 33px;
+    z-index: 2;
+}
+
+.bar__img {
+    position: absolute;
+    top: 33px;
+    cursor: pointer;
 }

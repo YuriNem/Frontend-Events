@@ -16,11 +16,13 @@ export default new Vuex.Store({
     },
 
     CHANGE_EVENT_LIKE_IN_EVENTS: (state, { key }) => {
-      const [summary, dtstart] = key.slice(1).split('|');
+      const [summary, dtstart] = key.split('|');
 
-      const event = state.events.find(event => 
-        event.summary === summary && event.dtstart === dtstart);
-  
+      const event = state.events.find(
+        event =>
+          event.summary === summary && event.dtstart === dtstart
+      );
+
       event.like = !event.like;
     },
   },
@@ -31,11 +33,14 @@ export default new Vuex.Store({
 
       const liked = JSON.parse(localStorage.getItem('liked')) || {};
       const likedEvents = 
-        events.map(event => Object.assign(
-          {},
-          event,
-          { like: `c${event.summary}|${event.dtstart}` in liked },
-        ));
+        events.map(
+          event =>
+            Object.assign(
+              {},
+              event,
+              { like: `${event.summary}|${event.dtstart}` in liked },
+            )
+        );
 
       context.commit('SET_EVENTS', { events: likedEvents });
     },
@@ -43,7 +48,7 @@ export default new Vuex.Store({
     CHANGE_EVENT_LIKE: (context, { key }) => {
       const liked = JSON.parse(localStorage.getItem('liked')) || {};
 
-      if (!liked[key]) {
+      if (!(key in liked)) {
         liked[key] = true;
       } else {
         delete liked[key];
