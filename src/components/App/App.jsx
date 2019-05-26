@@ -48,6 +48,8 @@ export default {
       likeon,
     } = this;
 
+    const { events } = this.$store.state;
+
     return (
       <div class="app">
         <Bar
@@ -60,14 +62,19 @@ export default {
           likeoff={likeoff}
           likeon={likeon}
         />
-        <Cards
-          search={search}
-          selectedcity={selectedcity}
-          upcoming={upcoming}
-          liked={liked}
-          likeoff={likeoff}
-          likeon={likeon}
-        />
+        {
+          events.length ?
+            <Cards
+              search={search}
+              selectedcity={selectedcity}
+              upcoming={upcoming}
+              liked={liked}
+              likeoff={likeoff}
+              likeon={likeon}
+            />
+          :
+            <div class="app__loading"></div>
+        }
       </div>
     );
   },
