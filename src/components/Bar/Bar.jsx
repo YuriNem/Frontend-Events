@@ -59,7 +59,9 @@ export default {
                             .sort()
                             .map(
                                 location =>
-                                    <option value={location}>{location}</option>
+                                    <option value={location} selected={location == selectedcity}>
+                                        {location}
+                                    </option>
                             )
                     }
                 </select>
