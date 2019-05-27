@@ -26,14 +26,20 @@ export default {
 
         return (
             <div class="bar">
-                Поиск: <input
-                    class="bar__search"
-                    type="search"
-                    name="search"
-                    value={search}
-                    onInput={onchange}
-                />
-                Выбрать город: <select
+                <label>
+                    Поиск:
+                    <input
+                        class="bar__search"
+                        type="search"
+                        name="search"
+                        value={search}
+                        onInput={onchange}
+                    />
+                </label>
+                
+                <label for="city">Выбрать город:</label>
+                <select
+                    id="city"
                     class="bar__select"
                     name="selectedcity"
                     value={selectedcity}
@@ -62,6 +68,7 @@ export default {
                             )
                     }
                 </select>
+
                 <button class="bar__button" name="upcoming" onClick={onclick}>
                     {upcoming ? 'Предстоящие' : 'Прошедшие'}
                 </button>
