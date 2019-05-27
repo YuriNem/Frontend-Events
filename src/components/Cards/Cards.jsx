@@ -9,6 +9,7 @@ export default {
       selectedcity: String,
       upcoming: Boolean,
       liked: Boolean,
+      date: Date,
     },
 
     methods: {
@@ -30,11 +31,10 @@ export default {
         upcoming,
         liked,
         oninput,
+        date,
       } = this;
 
       const { events } = this.$store.state;
-
-      const date = new Date();
 
       return (
         <div class="cards" onInput={oninput}>

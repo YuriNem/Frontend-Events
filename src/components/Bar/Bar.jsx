@@ -10,6 +10,7 @@ export default {
         liked: Boolean,
         onchange: Function,
         onclick: Function,
+        date: Date,
     },
 
     render(h) {
@@ -20,6 +21,7 @@ export default {
             liked,
             onchange,
             onclick,
+            date,
         } = this;
 
         const { events } = this.$store.state;
@@ -36,7 +38,7 @@ export default {
                         onInput={onchange}
                     />
                 </label>
-                
+
                 <label for="city">Выбрать город:</label>
                 <select
                     id="city"
@@ -52,9 +54,11 @@ export default {
                             ...new Set(
                                 events
                                     .filter(
-                                        ({ dtstart }) => upcoming ?
-                                            new Date(dtstart) >= new Date() :
-                                            new Date(dtstart) < new Date()
+                                        ({ dtstart }) =>
+                                            upcoming ?
+                                                new Date(dtstart) >= date
+                                            :
+                                                new Date(dtstart) < date
                                     )
                                     .map(({ location }) => location)
                             )
@@ -62,7 +66,7 @@ export default {
                             .sort()
                             .map(
                                 location =>
-                                    <option value={location} selected={location == selectedcity}>
+                                    <option value={location} selected={location === selectedcity}>
                                         {location}
                                     </option>
                             )
@@ -72,15 +76,16 @@ export default {
                 <button class="bar__button" name="upcoming" onClick={onclick}>
                     {upcoming ? 'Предстоящие' : 'Прошедшие'}
                 </button>
-                <div class="bar__upcoming">
+
+                <div class="bar__liked">
                     <input
                         type="checkbox"
                         name="liked"
-                        id="upcoming"
+                        id="liked"
                         checked={liked}
                         onClick={onclick}
                     />
-                    <label for="upcoming"></label>
+                    <label for="liked"></label>
                 </div>
             </div>
         );

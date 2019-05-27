@@ -36,10 +36,12 @@
     width: 200px;
     margin-left: 4px;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 13px;
 }
 
 .bar__button {
+    width: 114px;
+    text-align: left;
     color: rgb(225, 83, 69);
     border: 0px;
     font-size: 16px;
@@ -48,32 +50,32 @@
     margin-right: 20px;
 }
 
-.bar__upcoming {
-    width: 24px;
-    height: 24px;
+.bar__liked {
+    width: 25px;
+    height: 25px;
     display: inline-block;
     vertical-align: middle;
     position: relative;
 }
 
-.bar__upcoming input {
+.bar__liked input {
     opacity: 0;
 }
 
-.bar__upcoming input:focus + label {
+.bar__liked input:focus + label {
     outline: rgb(59, 153, 252) auto 5px;
 }
 
-.bar__upcoming input:checked + label {
-    background: url('../../../svg/likeOn.svg');
+.bar__liked input:checked + label {
+    background: no-repeat url('../../../svg/likeOn.svg');
 }
 
-.bar__upcoming label {
+.bar__liked label {
     position: absolute;
     right: 0;
-    background: url('../../../svg/likeOff.svg');
-    width: 24px;
-    height: 24px;
+    background: no-repeat url('../../../svg/likeOff.svg');
+    width: 25px;
+    height: 25px;
     display: inline-block;
     cursor: pointer;
 }

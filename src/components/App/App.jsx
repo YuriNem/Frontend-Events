@@ -45,6 +45,8 @@ export default {
 
     const { events } = this.$store.state;
 
+    const date = new Date();
+
     return (
       <div class="app">
         <Bar
@@ -54,6 +56,7 @@ export default {
           liked={liked}
           onchange={onchange}
           onclick={onclick}
+          date={date}
         />
         {
           events.length ?
@@ -62,6 +65,7 @@ export default {
               selectedcity={selectedcity}
               upcoming={upcoming}
               liked={liked}
+              date={date}
             />
           :
             <div class="app__loading"></div>
