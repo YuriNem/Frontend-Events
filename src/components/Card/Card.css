@@ -54,3 +54,7 @@
 .card__checkbox:checked + .card__label {
     background: url('../../../svg/likeOn.svg');
 }
+
+.card__checkbox:focus + .card__label {
+    outline: rgb(59, 153, 252) auto 5px;
+}
