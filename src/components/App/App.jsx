@@ -27,9 +27,6 @@ export default {
   created() {
     this.onchange = this.onchange.bind(this);
     this.onclick = this.onclick.bind(this);
-
-    this.likeoff = require('../../../svg/likeOff.svg');
-    this.likeon = require('../../../svg/likeOn.svg');
   },
 
   mounted() {
@@ -44,8 +41,6 @@ export default {
       liked,
       onchange,
       onclick,
-      likeoff,
-      likeon,
     } = this;
 
     const { events } = this.$store.state;
@@ -59,8 +54,6 @@ export default {
           liked={liked}
           onchange={onchange}
           onclick={onclick}
-          likeoff={likeoff}
-          likeon={likeon}
         />
         {
           events.length ?
@@ -69,8 +62,6 @@ export default {
               selectedcity={selectedcity}
               upcoming={upcoming}
               liked={liked}
-              likeoff={likeoff}
-              likeon={likeon}
             />
           :
             <div class="app__loading"></div>

@@ -43,3 +43,14 @@
     margin: 0px;
     cursor: pointer;
 }
+
+.card__label {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background: url('../../../svg/likeOff.svg');
+}
+
+.card__checkbox:checked + .card__label {
+    background: url('../../../svg/likeOn.svg');
+}
