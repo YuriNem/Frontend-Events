@@ -46,6 +46,7 @@ export default {
                     <option value="Любой">Любой</option>
                     {
                         [
+                            selectedcity,
                             ...new Set(
                                 events
                                     .filter(
