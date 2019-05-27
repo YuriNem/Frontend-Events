@@ -4,14 +4,13 @@ export default {
   name: 'Card',
 
   props: {
+    id: String,
     summary: String,
     location: String,
     description: String,
     dtstart: String,
     dtend: String,
     like: Boolean,
-    likeoff: Object,
-    likeon: Object,
   },
 
   methods: {
@@ -43,14 +42,13 @@ export default {
 
   render(h) {
     const {
+      id,
       summary,
       location,
       description,
       dtstart,
       dtend,
       like,
-      likeoff,
-      likeon,
       checkDates,
       stringifyDate,
     } = this;
@@ -78,9 +76,10 @@ export default {
             class="card__checkbox"
             type="checkbox"
             name={`c${summary}|${dtstart}`}
+            id={id}
             checked={like}
           />
-          <img class="card__img" src={like ? likeon : likeoff} alt="like" />
+          <label class="card__label" for={id}></label>
         </div>
     </a>
     );

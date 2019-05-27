@@ -10,8 +10,6 @@ export default {
         liked: Boolean,
         onchange: Function,
         onclick: Function,
-        likeoff: Object,
-        likeon: Object,
     },
 
     render(h) {
@@ -22,8 +20,6 @@ export default {
             liked,
             onchange,
             onclick,
-            likeoff,
-            likeon,
         } = this;
 
         const { events } = this.$store.state;
@@ -56,14 +52,16 @@ export default {
                 <button class="bar__button" name="upcoming" onClick={onclick}>
                     {upcoming ? 'Предстоящие' : 'Прошедшие'}
                 </button>
-                <input
-                    class="bar__checkbox"
-                    type="checkbox"
-                    name="liked"
-                    checked={liked}
-                    onClick={onclick}
-                />
-                <img class="bar__img" src={liked ? likeon : likeoff} alt="liked" />
+                <div class="bar__upcoming">
+                    <input
+                        type="checkbox"
+                        name="liked"
+                        id="upcoming"
+                        checked={liked}
+                        onClick={onclick}
+                    />
+                    <label for="upcoming"></label>
+                </div>
             </div>
         );
     },

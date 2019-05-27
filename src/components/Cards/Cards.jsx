@@ -9,8 +9,6 @@ export default {
       selectedcity: String,
       upcoming: Boolean,
       liked: Boolean,
-      likeoff: Object,
-      likeon: Object,
     },
 
     methods: {
@@ -32,8 +30,6 @@ export default {
         upcoming,
         liked,
         oninput,
-        likeoff,
-        likeon,
       } = this;
 
       const { events } = this.$store.state;
@@ -60,9 +56,7 @@ export default {
                     dtstart={event.dtstart}
                     dtend={event.dtend}
                     like={event.like}
-                    likeoff={likeoff}
-                    likeon={likeon}
-                    key={Math.random()}
+                    id={Math.random().toString(36).substr(2, 9)}
                   />
               )
           }
