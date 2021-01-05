@@ -20,7 +20,7 @@
   "homepage": "https://github.com/YuriNem/Frontend-Events#readme",
   "dependencies": {
     "@babel/core": "^7.4.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
